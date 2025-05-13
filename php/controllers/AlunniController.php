@@ -49,13 +49,10 @@ class AlunniController{
   }
 
   public function destroy(Request $request, Response $response, $args){ //id?
-    $data = json_decode($request->getBody()->getContents(), true);
-    $mysqli_connection = new MySQLi('my_mariadb', 'root', 'ciccio', 'scuola');
-    $stmt = $mysqli_connection->prepare("DELETE FROM alunni WHERE id = ?;");
-    $stmt->bind_param("i", $data['id']);
-    $stmt->execute();
+    $mysqli_connection = new MySQLi("my_mariadb", "root", "ciccio", "scuola");
+    $mysqli_connection->query("DELETE FROM alunni WHERE id = " . $args["id"]);
 
-    $response->getBody()->write("+1 KILL");
+    $response->getBody()->write(json_encode("success"));
     return $response->withHeader("Content-type", "application/json")->withStatus(200);
   }
 
