@@ -7,6 +7,7 @@ class AlunniController{
 
   //get di tutti
   public function index(Request $request, Response $response, $args){
+    sleep(3);
     $mysqli_connection = new MySQLi('my_mariadb', 'root', 'ciccio', 'scuola');
     $result = $mysqli_connection->query("SELECT * FROM alunni"); //array asociativo
     $results = $result->fetch_all(MYSQLI_ASSOC);
