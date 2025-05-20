@@ -5,10 +5,12 @@ export default function AlunniTable(props){
     const caricaAlunni = props.caricaAlunni;
     return(
         <table border="1">
-            {alunni.map(a => (
-                    <AlunniRiga alunno={a} caricaAlunni={caricaAlunni} />
-                )
-            )}
+            <tbody>
+                {alunni.map(a => (
+                    <AlunniRiga alunno={a} key={a.id} caricaAlunni={caricaAlunni} />
+                    )
+                )}
+            </tbody>
         </table>
     );
 }
